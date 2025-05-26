@@ -1,0 +1,97 @@
+Here is a complete Python script for Titanic dataset preprocessing, ready to run and upload to GitHub. This code performs all the steps: loading, cleaning, encoding, scaling, and visualizing.
+
+
+---
+
+Filename: titanic_preprocessing.py
+
+# titanic_preprocessing.py
+
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+
+# 1. Load the dataset
+df = pd.read_csv('titanic.csv')  # Make sure 'titanic.csv' is in the same directory
+print("Initial Data Preview:")
+print(df.head())
+
+# 2. Data Information
+print("\nDataset Info:")
+print(df.info())
+
+# 3. Handle missing values
+df['Age'].fillna(df['Age'].mean(), inplace=True)
+df['Embarked'].fillna(df['Embarked'].mode()[0], inplace=True)
+df.drop(columns=['Cabin'], inplace=True)  # Too many missing values
+
+# 4. Convert categorical to numerical (Encoding)
+df = pd.get_dummies(df, columns=['Sex', 'Embarked'], drop_first=True)
+
+# 5. Normalize/Standardize numerical features
+scaler = StandardScaler()
+df[['Age', 'Fare']] = scaler.fit_transform(df[['Age', 'Fare']])
+
+# 6. Visualize and Remove Outliers
+# Boxplot before removing
+plt.figure(figsize=(8,4))
+sns.boxplot(x=df['Fare'])
+plt.title("Boxplot - Fare Before Removing Outliers")
+plt.show()
+
+# Remove outliers using IQR
+Q1 = df['Fare'].quantile(0.25)
+Q3 = df['Fare'].quantile(0.75)
+IQR = Q3 - Q1
+df = df[(df['Fare'] >= Q1 - 1.5 * IQR) & (df['Fare'] <= Q3 + 1.5 * IQR)]
+
+# Boxplot after removing
+plt.figure(figsize=(8,4))
+sns.boxplot(x=df['Fare'])
+plt.title("Boxplot - Fare After Removing Outliers")
+plt.show()
+
+# 7. Final data check
+print("\nCleaned Data Preview:")
+print(df.head())
+
+# Optional: Save cleaned data
+df.to_csv('titanic_cleaned.csv', index=False)
+print("\nCleaned data saved to 'titanic_cleaned.csv'")
+
+
+---
+
+How to Run and Upload to GitHub:
+
+1. Save the above code in a file called titanic_preprocessing.py.
+
+
+2. Make sure titanic.csv is in the same folder.
+
+
+3. Run the file:
+
+python titanic_preprocessing.py
+
+
+4. To upload:
+
+Initialize Git:
+
+git init
+git add .
+git commit -m "Titanic Data Preprocessing"
+
+Push to GitHub:
+
+git remote add origin https://github.com/yourusername/your-repo.git
+git push -u origin master
+
+
+
+
+Want me to create a README.md for GitHub too?
+
