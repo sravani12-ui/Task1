@@ -1,5 +1,48 @@
 
 
+## Tasks
+
+- **[Task 1: Data Cleaning & Preprocessing](Task1_README.md)**
+- **[Task 2: Exploratory Data Analysis (EDA)](Task2_README.md)**
+- (Add more tasks as needed)
+
+Each task is stored in a separate notebook and includes a dedicated README file with explanations, tools used, and insights gained.
+
+---
+GitHub: [sravani12-ui](https://github.com/sravani12-ui)
+
+
+---
+
+2. Task 1 README
+
+Name: Task1_README.md
+
+# Task 1: Data Cleaning & Preprocessing
+
+## Objective
+Clean and preprocess the Titanic dataset to prepare it for machine learning tasks.
+
+## Dataset
+- **Source**: [Kaggle Titanic Dataset](https://www.kaggle.com/c/titanic/data)
+
+## Key Steps
+- Handled missing values in features like 'Age', 'Embarked'
+- Encoded categorical variables using LabelEncoder / OneHotEncoding
+- Detected and treated outliers
+- Applied feature scaling techniques
+
+## Tools Used
+- Python  
+- Pandas  
+- NumPy  
+- Scikit-learn
+
+## Notebook
+[View Task1_Preprocessing.ipynb](https://github.com/sravani12-ui/Task1/blob/main/Task1_Preprocessing.ipynb)
+
+
+
 # Task 2: Exploratory Data Analysis (EDA)
 
 ## Objective
